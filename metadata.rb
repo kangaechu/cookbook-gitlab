@@ -11,6 +11,8 @@ version          "6.1.0"
   depends cb_depend
 end
 
+depends 'openldap'
+
 %w[ redhat centos scientific amazon debian ubuntu ].each do |os|
   supports os
 end

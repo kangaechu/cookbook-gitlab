@@ -167,6 +167,14 @@ template "#{node['gitlab']['app_home']}/config/database.yml" do
       :password => node['gitlab']['database']['password']
   )
 end
+
+ldap = nil
+if node['gitlab']['ldap_auth']
+  ldap['host'] = search(:node, "recipes:openldap\\:\\:users && domain:#{node['domain']}").first 
+  ldap['base'] = node['openldap']['basedn']
+  ldap['binddn'] = node['openldap']['anon_binddn']
+  ldap['bindpw'] = node['openldap']['anon_pass']
+end
 # Render gitlab config file
 template "#{node['gitlab']['app_home']}/config/gitlab.yml" do
   owner node['gitlab']['user']
@@ -178,7 +186,8 @@ template "#{node['gitlab']['app_home']}/config/gitlab.yml" do
       :git_user => node['gitlab']['user'],
       :git_home => node['gitlab']['home'],
       :backup_path => node['gitlab']['backup_path'],
-      :backup_keep_time => node['gitlab']['backup_keep_time']
+      :backup_keep_time => node['gitlab']['backup_keep_time'],
+      :ldap => ldap
   )
 end
 

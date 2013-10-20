@@ -65,3 +65,17 @@ suites:
         groups:
         - sudo
         - wheel
+- name: ldap_auth
+  run_list: 
+    - recipe[mysql::server]
+    - recipe[openldap::server]
+    - recipe[openldap::users]
+    - recipe[gitlab]
+  attributes:
+    mysql:
+      server_debian_password: test
+      server_backup_password: test
+      server_root_password: test
+      server_repl_password: test
+    gitlab:
+      ldap_auth: true
