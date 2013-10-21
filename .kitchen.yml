@@ -85,7 +85,6 @@ suites:
         - sudo
         - wheel
     openldap:
-      rootpw: "{SSHA}6BjlvtSbVCL88li8IorkqMSofkLio58/" # secretsauce
-      basedn: "dc=example, dc=com"
-      server: "ldap.example.com"
+      rootpw: secretsauce
+      roothash: "{SSHA}6BjlvtSbVCL88li8IorkqMSofkLio58/" 
       preseed_dir: "/tmp/does_not_exist"
