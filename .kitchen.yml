@@ -79,3 +79,13 @@ suites:
       server_repl_password: test
     gitlab:
       ldap_auth: true
+    authorization:
+      sudo:
+        groups:
+        - sudo
+        - wheel
+    openldap:
+      rootpw: "{SSHA}6BjlvtSbVCL88li8IorkqMSofkLio58/" # secretsauce
+      basedn: "dc=example, dc=com"
+      server: "ldap.example.com"
+      preseed_dir: "/tmp/does_not_exist"
