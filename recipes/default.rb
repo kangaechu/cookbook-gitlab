@@ -168,16 +168,19 @@ template "#{node['gitlab']['app_home']}/config/database.yml" do
   )
 end
 
-ldap = nil
+ldap = {}
 if node['gitlab']['ldap_auth']
+  
   if Chef::Config[:solo]
-    ldap['host'] = "localhost"
+    ldap_node = node
+
   else
-    ldap['host'] = search(:node, "recipes:openldap\\:\\:users && domain:#{node['domain']}").first 
+    ldap_node = search(:node, "recipes:openldap\\:\\:users && domain:#{node['domain']}").first 
   end
-  ldap['base'] = node['openldap']['basedn']
-  ldap['binddn'] = node['openldap']['anon_binddn']
-  ldap['bindpw'] = node['openldap']['anon_pass']
+  ldap['host'] = ldap_node['fqdn']
+  ldap['base'] = ldap_node['openldap']['basedn']
+  ldap['binddn'] = ldap_node['openldap']['anon_binddn']
+  ldap['bindpw'] = ldap_node['openldap']['anon_pass']
 end
 # Render gitlab config file
 template "#{node['gitlab']['app_home']}/config/gitlab.yml" do
