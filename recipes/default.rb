@@ -170,7 +170,11 @@ end
 
 ldap = nil
 if node['gitlab']['ldap_auth']
-  ldap['host'] = search(:node, "recipes:openldap\\:\\:users && domain:#{node['domain']}").first 
+  if Chef::Config[:solo]
+    ldap['host'] = "localhost"
+  else
+    ldap['host'] = search(:node, "recipes:openldap\\:\\:users && domain:#{node['domain']}").first 
+  end
   ldap['base'] = node['openldap']['basedn']
   ldap['binddn'] = node['openldap']['anon_binddn']
   ldap['bindpw'] = node['openldap']['anon_pass']
