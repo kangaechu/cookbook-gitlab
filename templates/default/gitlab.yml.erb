@@ -102,9 +102,9 @@ production: &base
     enabled: true
     host: '<%= @ldap['host'] %>'
     base: '<%= @ldap['base'] %>'
-    port: 636
+    port: <%= @ldap['port'] %>
     uid: 'sAMAccountName'
-    method: 'ssl' # "ssl" or "plain"
+    method: <%= @ldap['method'] %>
     bind_dn: '<%= @ldap['binddn'] %>'
     password: '<%= @ldap['bindpw'] %>'
     allow_username_or_email_login: true

@@ -93,4 +93,6 @@ default['gitlab']['backup_keep_time'] = 604800
 default['gitlab']['listen_ip'] = "*"
 default['gitlab']['listen_port'] = nil
 
-default['gitlab']['ldap_auth'] = false
+default['gitlab']['ldap']['auth'] = false
+default['gitlab']['ldap']['method'] = "plain"
+default['gitlab']['ldap']['port'] = "389"
