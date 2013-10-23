@@ -98,7 +98,7 @@ production: &base
 
   ## LDAP settings
   ldap:
-  <% if node['gitlab']['ldap_auth'] %>
+  <% if node['gitlab']['ldap']['auth'] %>
     enabled: true
     host: '<%= @ldap['host'] %>'
     base: '<%= @ldap['base'] %>'

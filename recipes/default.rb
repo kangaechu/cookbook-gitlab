@@ -169,7 +169,7 @@ template "#{node['gitlab']['app_home']}/config/database.yml" do
 end
 
 ldap = {}
-if node['gitlab']['ldap_auth']
+if node['gitlab']['ldap']['auth']
   if Chef::Config[:solo]
     ldap_node = node
   else
