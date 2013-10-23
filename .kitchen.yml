@@ -78,7 +78,8 @@ suites:
       server_root_password: test
       server_repl_password: test
     gitlab:
-      ldap_auth: true
+      ldap:
+        auth: true
     authorization:
       sudo:
         groups:
