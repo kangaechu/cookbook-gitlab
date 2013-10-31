@@ -328,3 +328,8 @@ service "gitlab" do
   action [ :enable, :start ]
   subscribes :restart, "template[#{node['gitlab']['app_home']}/config/gitlab.yml]"
 end
+
+link "/usr/bin/ruby" do
+  to "/usr/local/ruby/#{node['gitlab']['install_ruby']}/bin/ruby"
+end
+
