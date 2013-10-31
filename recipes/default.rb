@@ -179,6 +179,7 @@ if node['gitlab']['ldap']['auth']
   ldap['base'] = ldap_node['openldap']['basedn']
   ldap['port'] = node['gitlab']['ldap']['port']
   ldap['method'] = node['gitlab']['ldap']['method']
+  ldap['uid'] = node['gitlab']['ldap']['uid']
   ldap['binddn'] = ldap_node['openldap']['anon_binddn']
   ldap['bindpw'] = ldap_node['openldap']['anon_pass']
 end
