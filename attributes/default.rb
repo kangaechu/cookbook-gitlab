@@ -25,6 +25,8 @@ default['gitlab']['home'] = "/srv/git"
 default['gitlab']['app_home'] = default['gitlab']['home'] + '/gitlab'
 default['gitlab']['web_fqdn'] = nil
 default['gitlab']['nginx_server_names'] = [ 'gitlab.*', node['fqdn'] ]
+default['gitlab']['apache_server_names'] = [ 'gitlab.*', node['fqdn'] ]
+default['gitlab']['apache_server_aliases'] = [ 'gitlab' ]
 default['gitlab']['email_from'] = "gitlab@#{node['domain']}"
 default['gitlab']['support_email'] = "gitlab-support@#{node['domain']}"
 
@@ -45,6 +47,10 @@ default['gitlab']['database']['host'] = "localhost"
 default['gitlab']['database']['pool'] = 5
 default['gitlab']['database']['database'] = "gitlab"
 default['gitlab']['database']['username'] = "gitlab"
+
+# Web Server setup
+default['gitlab']['webserver']['type'] = "nginx"
+
 
 default['gitlab']['install_ruby'] = "1.9.3-p448"
 default['gitlab']['cookbook_dependencies'] = %w[
