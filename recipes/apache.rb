@@ -33,7 +33,7 @@ end
 web_app "gitlab" do
   docroot "#{node[:gitlab][:app_home]}/public"
   template "gitlab.conf.erb"
-  server_name node['gitlab']['apache_server_names'].join(' ')
-  server_aliases node['gitlab']['apache_server_names'].join(' ')
+  server_name node['gitlab']['apache_server_name']
+  server_aliases node['gitlab']['apache_server_aliases'].join(' ')
   rails_env "production"
 end
